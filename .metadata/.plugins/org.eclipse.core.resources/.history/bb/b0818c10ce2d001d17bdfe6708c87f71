@@ -1,0 +1,5 @@
+package com.gft.rest.mapper;
+
+public class StudentMapper {
+
+}

@@ -1,0 +1,66 @@
+package com.gft.usecases.adapter;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
+import com.gft.db.model.StudentModel;
+import com.gft.entities.Student;
+ 
+public interface StudentAdapter {
+
+	void deleteAll();
+
+	void deleteAll(Iterable<? extends StudentModel> entities);
+
+	void delete(StudentModel entity);
+
+	<S extends StudentModel> List<S> findAll(Example<S> example, Sort sort);
+
+	void deleteById(Long id);
+
+	long count();
+
+	<S extends StudentModel> List<S> findAll(Example<S> example);
+
+	<S extends StudentModel> boolean exists(Example<S> example);
+
+	<S extends StudentModel> long count(Example<S> example);
+
+	StudentModel getOne(Long id);
+
+	void deleteAllInBatch();
+
+	<S extends StudentModel> Page<S> findAll(Example<S> example, Pageable pageable);
+
+	void deleteInBatch(Iterable<StudentModel> entities);
+
+	boolean existsById(Long id);
+
+	<S extends StudentModel> S saveAndFlush(S entity);
+
+	void flush();
+
+	Optional<StudentModel> findById(Long id);
+
+	<S extends StudentModel> List<S> saveAll(Iterable<S> entities);
+
+	List<StudentModel> findAllById(Iterable<Long> ids);
+
+	List<StudentModel> findAll(Sort sort);
+
+	List<StudentModel> findAll();
+
+	Page<StudentModel> findAll(Pageable pageable);
+
+	<S extends StudentModel> Optional<S> findOne(Example<S> example);
+
+	<S extends StudentModel> S save(S entity);
+
+	Student findByName(String name);
+ 
+}

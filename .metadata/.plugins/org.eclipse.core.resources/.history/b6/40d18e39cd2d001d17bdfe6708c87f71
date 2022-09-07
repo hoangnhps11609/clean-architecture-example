@@ -1,0 +1,5 @@
+package com.gft.db.model;
+
+public class StudentModel {
+
+}

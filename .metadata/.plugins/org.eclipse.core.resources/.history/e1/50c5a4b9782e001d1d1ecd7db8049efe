@@ -1,0 +1,22 @@
+package com.gft.configuration;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.gft.db.StudentAdapterImpl;
+import com.gft.usecases.adapter.StudentAdapter;
+import com.gft.usecases.student.FindStudentByNameUseCase;
+
+@Configuration
+public class UseCaseConfiguration {
+
+   @Bean
+   public FindStudentByNameUseCase findStudentByNameUseCase(StudentAdapter studentAdapter) {
+       return new FindStudentByNameUseCase(studentAdapter);
+   }
+
+   @Bean
+   public StudentAdapter studentAdapter() {
+       return new StudentAdapterImpl();
+   }
+}

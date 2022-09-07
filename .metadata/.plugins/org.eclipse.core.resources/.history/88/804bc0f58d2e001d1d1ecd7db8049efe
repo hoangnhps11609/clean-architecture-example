@@ -1,0 +1,66 @@
+package com.gft.db;
+
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+ 
+import com.gft.db.mapper.StudentMapper;
+import com.gft.db.model.StudentModel;
+import com.gft.entities.Student;
+import com.gft.usecases.adapter.StudentAdapter;
+ 
+public class StudentAdapterImpl implements StudentAdapter {
+ 
+	@Autowired
+	private StudentRepository studentRepository;
+ 
+	@Override
+	public List<Student> findByName(String name) {
+		List<StudentModel> findByName = studentRepository.findByName(name);
+		return StudentMapper.toListEntity(findByName);
+	}
+
+	@Override
+	public List<Student> findAll() {
+		List<StudentModel> findAll = studentRepository.findAll();
+		return StudentMapper.toListEntity(findAll);
+	}
+
+	@Override
+	public String save(Student student) {
+		StudentModel studentModel = StudentMapper.toModel(student);
+		studentRepository.save(studentModel);
+		return "insert successfully";
+	}
+
+	@Override
+	public String delete(Long id) {
+		StudentModel studentModel = studentRepository.getOne(id);
+		if(studentModel != null) {
+			studentRepository.delete(studentModel);
+			return "delete successfully";
+		}else {
+			return "student invalid";
+		}
+	}
+
+	@Override
+	public String update(Student student) {
+		StudentModel studentModel = StudentMapper.toModel(student);
+		try {
+			studentRepository.save(studentModel);
+			return "update successfully";
+		} catch (Exception e) {
+			return "student invalid";
+		}
+	}
+
+	@Override
+	public List<Student> findByAge(Integer from, Integer to) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

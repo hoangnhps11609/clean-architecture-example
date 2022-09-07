@@ -1,0 +1,5 @@
+package com.gft.rest.dto;
+
+public class StudentDto {
+
+}

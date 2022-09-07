@@ -1,0 +1,7 @@
+package com.gft.usecases.adapter;
+
+import com.gft.entities.Student;
+ 
+public interface StudentAdapter {
+ 
+}

@@ -1,0 +1,150 @@
+package com.gft.db;
+
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
+import com.gft.db.mapper.StudentMapper;
+import com.gft.db.model.Student;
+import com.gft.entities.Student;
+import com.gft.usecases.adapter.StudentAdapter;
+ 
+public class StudentAdapterImpl implements StudentAdapter {
+ 
+	@Autowired
+	private StudentRepository studentRepository;
+ 
+	@Override
+	public Student findByName(String name) {
+		Student findByName = studentRepository.findByName(name);
+		return StudentMapper.toEntity(findByName);
+	}
+
+
+	@Override
+	public <S extends Student> S save(S entity) {
+		return studentRepository.save(entity);
+	}
+
+	@Override
+	public <S extends Student> Optional<S> findOne(Example<S> example) {
+		return studentRepository.findOne(example);
+	}
+
+	@Override
+	public Page<Student> findAll(Pageable pageable) {
+		return studentRepository.findAll(pageable);
+	}
+
+	@Override
+	public List<Student> findAll() {
+		return studentRepository.findAll();
+	}
+
+	@Override
+	public List<Student> findAll(Sort sort) {
+		return studentRepository.findAll(sort);
+	}
+
+	@Override
+	public List<Student> findAllById(Iterable<Long> ids) {
+		return studentRepository.findAllById(ids);
+	}
+
+	@Override
+	public <S extends Student> List<S> saveAll(Iterable<S> entities) {
+		return studentRepository.saveAll(entities);
+	}
+
+	@Override
+	public Optional<Student> findById(Long id) {
+		return studentRepository.findById(id);
+	}
+
+	@Override
+	public void flush() {
+		studentRepository.flush();
+	}
+
+	@Override
+	public <S extends Student> S saveAndFlush(S entity) {
+		return studentRepository.saveAndFlush(entity);
+	}
+
+	@Override
+	public boolean existsById(Long id) {
+		return studentRepository.existsById(id);
+	}
+
+	@Override
+	public void deleteInBatch(Iterable<Student> entities) {
+		studentRepository.deleteInBatch(entities);
+	}
+
+	@Override
+	public <S extends Student> Page<S> findAll(Example<S> example, Pageable pageable) {
+		return studentRepository.findAll(example, pageable);
+	}
+
+	@Override
+	public void deleteAllInBatch() {
+		studentRepository.deleteAllInBatch();
+	}
+
+	@Override
+	public Student getOne(Long id) {
+		return studentRepository.getOne(id);
+	}
+
+	@Override
+	public <S extends Student> long count(Example<S> example) {
+		return studentRepository.count(example);
+	}
+
+	@Override
+	public <S extends Student> boolean exists(Example<S> example) {
+		return studentRepository.exists(example);
+	}
+
+	@Override
+	public <S extends Student> List<S> findAll(Example<S> example) {
+		return studentRepository.findAll(example);
+	}
+
+	@Override
+	public long count() {
+		return studentRepository.count();
+	}
+
+	@Override
+	public void deleteById(Long id) {
+		studentRepository.deleteById(id);
+	}
+
+	@Override
+	public <S extends Student> List<S> findAll(Example<S> example, Sort sort) {
+		return studentRepository.findAll(example, sort);
+	}
+
+	@Override
+	public void delete(Student entity) {
+		studentRepository.delete(entity);
+	}
+
+	@Override
+	public void deleteAll(Iterable<? extends Student> entities) {
+		studentRepository.deleteAll(entities);
+	}
+
+	@Override
+	public void deleteAll() {
+		studentRepository.deleteAll();
+	}
+
+}

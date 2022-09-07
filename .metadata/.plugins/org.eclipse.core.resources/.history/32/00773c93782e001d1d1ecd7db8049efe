@@ -1,0 +1,19 @@
+package com.gft.usecases.student;
+
+
+import com.gft.entities.Student;
+import com.gft.usecases.adapter.StudentAdapter;
+ 
+public class FindStudentByNameUseCase {
+ 
+	private StudentAdapter adapter;
+ 
+	public FindStudentByNameUseCase(StudentAdapter adapter) {
+		this.adapter = adapter;
+	}
+ 
+	public Student find(String name) {
+		return adapter.findByName(name);
+	}
+ 
+}

@@ -1,0 +1,63 @@
+package com.gft.rest;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+ 
+import com.gft.entities.Student;
+import com.gft.rest.dto.StudentDto;
+import com.gft.rest.mapper.StudentMapper;
+import com.gft.usecases.student.StudentUseCase;
+ 
+@RestController
+@RequestMapping("")
+public class StudentController {
+ 
+	@Autowired
+	private StudentUseCase studentUseCase;
+ 
+	@GetMapping("/findByName")
+	public ResponseEntity<List<StudentDto>> findByName(@RequestParam String name) {
+		List<Student> students = studentUseCase.find(name);
+		return new ResponseEntity<>(StudentMapper.toListDto(students), HttpStatus.OK);
+	}
+	
+	@GetMapping("/findAll")
+	public ResponseEntity<List<StudentDto>> findAll() {
+		List<Student> students = studentUseCase.findAll();
+		return new ResponseEntity<List<StudentDto>>(StudentMapper.toListDto(students), HttpStatus.OK);
+	}
+	
+	@PostMapping("/insert")
+	public String insert(@RequestBody Student student) {
+		return studentUseCase.insert(student);
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public String delete(@PathVariable Long id) {
+		return studentUseCase.delete(id);
+	}
+	
+	@PutMapping("/update")
+	public String update(@RequestBody Student student) {
+		return studentUseCase.update(student);
+	}
+	
+	@GetMapping("/findByAge/{from}/{to}")
+	public ResponseEntity<List<StudentDto>> findByAge(@PathVariable("from") Integer from, @PathVariable("to") Integer to) {
+		List<Student> students = studentUseCase.findByAge(from, to);
+		return new ResponseEntity<List<StudentDto>>(StudentMapper.toListDto(students), HttpStatus.OK);
+	} 
+ 
+}

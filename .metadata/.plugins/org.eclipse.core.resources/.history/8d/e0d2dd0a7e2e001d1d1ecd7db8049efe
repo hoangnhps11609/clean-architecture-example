@@ -1,0 +1,13 @@
+package com.gft.usecases.adapter;
+
+import java.util.List;
+
+import com.gft.db.model.StudentModel;
+import com.gft.entities.Student;
+ 
+public interface StudentAdapter {
+ 
+    Student findByName(String name);
+
+	List<StudentModel> findAll();
+}

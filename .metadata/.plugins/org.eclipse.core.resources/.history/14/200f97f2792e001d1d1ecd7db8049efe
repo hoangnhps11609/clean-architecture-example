@@ -1,0 +1,16 @@
+package com.gft.db;
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+ 
+import com.gft.db.model.StudentModel;
+import com.gft.entities.Student;
+ 
+@Repository
+public interface StudentRepository extends JpaRepository<StudentModel, Long> {
+ 
+    StudentModel findByName(String name);
+
+	void save(Student student);
+}

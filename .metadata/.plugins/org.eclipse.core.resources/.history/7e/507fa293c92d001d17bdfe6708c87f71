@@ -1,0 +1,5 @@
+package com.gft.usecases.student;
+
+public class FindStudentByNameUseCase {
+
+}
